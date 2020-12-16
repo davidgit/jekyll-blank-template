@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark social-navbar fixed-top">
+	<div class="container-fluid">
+
+		<span class="navbar-text">
+			<a href="mailto:{{ site.email }}">
+				<i class="fa fa-envelope"></i> {{ site.email }}
+			</a>
+		</span>
+
+		<ul class="navbar-nav flex-row ms-auto my-1 mb-lg-0">
+			<li class="nav-item ps-3 ps-lg-0">
+				<a class="nav-link" rel="tooltip" title="{{ site.twitter.title }}"
+					href="https://twitter.com/{{ site.twitter.username | escape }}" target="_blank">
+					<i class="fa fa-twitter"></i>
+					<!--<p class="d-lg-none">Twitter</p>-->
+				</a>
+			</li>
+			<li class="nav-item ps-3 ps-lg-0">
+				<a class="nav-link" rel="tooltip" title="{{ site.facebook.title }}"
+					href="https://www.facebook.com/{{ site.facebook.username | escape }}" target="_blank">
+					<i class="fa fa-facebook-square"></i>
+				</a>
+			</li>
+			<li class="nav-item ps-3 ps-lg-0">
+				<a class="nav-link" rel="tooltip" title="{{ site.instagram.title }}"
+					href="https://www.instagram.com/{{ site.instagram.username | escape }}" target="_blank">
+					<i class="fa fa-instagram"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" aria-label="Main navigation">
+	<div class="container-fluid">
+		{%- assign page_paths = site.header_pages -%}
+
+		<a class="navbar-brand" href="/">{{ site.title | escape }}</a>
+
+		<button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="offcanvas" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+			<div class="container float-end pe-0">
+				<button class="navbar-toggler btn-close btn-close-white p-0 border-0 float-end" type="button"
+					data-bs-toggle="offcanvas-close" aria-label="Toggle navigation">
+				</button>
+			</div>
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 float-end">
+				{%- for path in page_paths -%}
+				{%- assign my_page = site.pages | where: "path", path | first -%}
+				{%- if my_page.title -%}
+				<li class="nav-item">
+					<a class="nav-link" rel="tooltip" href="{{ my_page.url | relative_url }}">
+						{{ my_page.title | escape }}
+					</a>
+				</li>
+				{%- endif -%}
+				{% endfor -%}
+			</ul>
+		</div>
+	</div>
+</nav>
